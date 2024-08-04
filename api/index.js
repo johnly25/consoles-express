@@ -3,7 +3,7 @@ const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
-const dev_db_url = require('./dev_db_url')
+const dev_db_url = require('../dev_db_url')
 const compression = require("compression");
 const helmet = require("helmet");
 const RateLimit = require("express-rate-limit");
@@ -31,7 +31,7 @@ const limiter = RateLimit({
   max: 20,
 });
 // Apply rate limiter to all requests
-app.use(limiter);
+// app.use(limiter);
 
 // Set up mongoose connection
 const mongoose = require("mongoose");
@@ -55,9 +55,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('../', indexRouter);
-app.use('../users', usersRouter);
-app.use("../catalog", catalogRouter); // Add catalog routes to middleware chain.
+app.use('/', indexRouter);
+app.use('/users', usersRouter);
+app.use("/catalog", catalogRouter); // Add catalog routes to middleware chain.
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -75,4 +75,5 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+console.log('test');
 module.exports = app;
