@@ -3,14 +3,14 @@ const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
-const dev_db_url = require('../dev_db_url')
+const dev_db_url = require('./dev_db_url');
 const compression = require("compression");
 const helmet = require("helmet");
 const RateLimit = require("express-rate-limit");
 
-const indexRouter = require('../routes/index');
-const usersRouter = require('../routes/users');
-const catalogRouter = require("../routes/catalog"); 
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
+const catalogRouter = require("./routes/catalog"); 
 
 var app = express();
 
@@ -36,6 +36,7 @@ const limiter = RateLimit({
 // Set up mongoose connection
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", false);
+console.log(dev_db_url);
 const mongoDB = process.env.MONGODB_URI || dev_db_url;
 
 main().catch((err) => console.log(err));
