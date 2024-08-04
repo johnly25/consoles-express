@@ -20,7 +20,8 @@
     "luxon": "^3.4.4",
     "mongoose": "^8.5.1",
     "morgan": "~1.9.1",
-    "pug": "2.0.0-beta11"
+    "pug": "2.0.0-beta11",
+    "vercel": "^35.2.3"
   },
   "devDependencies": {
     "nodemon": "^3.1.4"
