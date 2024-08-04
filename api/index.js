@@ -8,9 +8,9 @@ const compression = require("compression");
 const helmet = require("helmet");
 const RateLimit = require("express-rate-limit");
 
-const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
-const catalogRouter = require("./routes/catalog"); 
+const indexRouter = require('../routes/index');
+const usersRouter = require('../routes/users');
+const catalogRouter = require("../routes/catalog"); 
 
 var app = express();
 
@@ -55,9 +55,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use("/catalog", catalogRouter); // Add catalog routes to middleware chain.
+app.use('../', indexRouter);
+app.use('../users', usersRouter);
+app.use("../catalog", catalogRouter); // Add catalog routes to middleware chain.
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -75,5 +75,4 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-app.listen(3000, () => console.log("Server ready on port 3000."));
 module.exports = app;
