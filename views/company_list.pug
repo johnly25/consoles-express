@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h1= title
+
+  if company_list.length
+    ul
+      each company in company_list
+        li
+          a(href=company.url) #{company.name}
+          |  #{company.date_founded_formatted}
+  else
+    p There are no companies.

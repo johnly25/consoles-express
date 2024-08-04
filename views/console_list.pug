@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  h1= title
+  if console_list.length
+    ul
+      each console in console_list
+        li
+          a(href=console.url) #{console.name}
+          |  (#{console.company.name})
+
+  else
+    p There are no books.
+

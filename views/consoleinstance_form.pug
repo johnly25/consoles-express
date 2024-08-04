@@ -1,0 +1,32 @@
+extends layout
+
+block content
+  h1=title
+
+  form(method='POST')
+    div.form-group
+      label(for='console') Console:
+      select#console.form-control(name='console' required)
+        option(value='') --Please select a Console--
+        for console in console_list
+          if selected_console==console._id.toString()
+            option(value=console._id, selected) #{console.name}
+          else
+            option(value=console._id) #{console.name}
+
+    div.form-group
+      label(for='condition') Status:
+      select#condition.form-control(name='condition' required)
+        option(value='') --Please select a Condition--
+        each val in ['New', 'Used']
+          if undefined===consoleinstance|| consoleinstance.condition!=val
+            option(value=val)= val
+          else
+            option(value=val selected)= val
+
+    button.btn.btn-primary(type='submit') Submit
+
+  if errors
+    ul
+      for error in errors
+        li!= error.msg

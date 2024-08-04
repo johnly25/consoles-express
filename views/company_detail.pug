@@ -1,0 +1,27 @@
+extends layout
+
+block content
+
+  h1 #{company.name}
+  p Company Founded: #{company.date_founded_formatted}
+  p Headquarters: 
+    if company.headquarters.length 
+      each hq in company.headquarters
+        p #{hq}
+
+  div(style='margin-left:20px;margin-top:20px')
+    h2(style='font-size: 1.5rem;') Consoles
+    if company_consoles.length
+      dl
+        each console in company_consoles
+          dt
+            a(href=console.url) #{console.name}
+          dd #{console.description}
+    else
+      p This Company has no books.
+
+  hr
+  p
+    a(href=company.url+'/update') Update Company
+  p
+    a(href=company.url+'/delete') Delete company

@@ -1,0 +1,26 @@
+extends layout
+
+block content
+
+  h1 #{title}: #{console.name}
+  p= console.description
+
+  if console_consoleinstances.length
+
+    p #[strong Delete the following console instances before attempting to delete this console.]
+    div(style='margin-left:20px;margin-top:20px')
+      h4 Console Instances
+      dl
+        each ci in console_consoleinstances
+          dt
+            a(href=ci.url) #{console.name}
+          dd #{console.summary}
+
+  else
+    p Do you really want to delete this Console?
+
+    form(method='POST')
+      div.form-group
+        input#consoleid.form-control(type='hidden', name='consoleid', value=console._id )
+
+      button.btn.btn-primary(type='submit') Delete

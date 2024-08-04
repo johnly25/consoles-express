@@ -1,0 +1,43 @@
+extends layout
+
+block content
+  h1= title
+
+  form(method='POST')
+    div.form-group
+      label(for='name') Title:
+      input#name.form-control(type='text' placeholder='Name of console' name='name' required value=(undefined===_console ? '' : _console.name) )
+    div.form-group
+      label(for='company') Author:
+      select#company.form-control(name='company' required)
+        option(value='') --Please select an author--
+        for company in companies
+          p #{company.name} #{company._id.toString()}
+          if _console 
+            if company._id.toString()===_console.company._id.toString()
+              option(value=company._id selected) #{company.name}
+            else
+              option(value=company._id) #{company.name}
+          else
+            option(value=company._id) #{company.name}
+    div.form-group
+      label(for='description') Summary:
+      textarea#description.form-control(placeholder='description' name='description' required)= undefined===_console ? '' : _console.description
+    div.form-group
+      label Category:
+      div
+        for category in categories
+          div(style='display: inline; padding-right:10px;')
+          if (_console && _console.category._id.toString() === category._id.toString())
+            input.radio-input(type='radio' name='categories', id=category._id, value=category._id, checked)              
+            label(for=categories._id) &nbsp;#{category.name}
+          else 
+            input.radio-input(type='radio' name='categories', id=category._id, value=category._id, required)              
+            label(for=categories._id) &nbsp;#{category.name}
+    button.btn.btn-primary(type='submit') Submit
+
+  if errors
+    ul
+      for error in errors
+        li!= error.msg
+

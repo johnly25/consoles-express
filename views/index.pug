@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #[em Consoles], 
+
+  h2 Dynamic content
+
+  p The library has the following record counts:
+
+  ul
+    li #[strong Consoles:] !{console_count}
+    li #[strong Instances:] !{console_instance_count}
+    li #[strong Consoles New:] !{console_instance_new_count}
+    li #[strong Consoles Used:] !{console_instance_old_count}
+    li #[strong Companies:] !{company_count}
+    li #[strong Categories:] !{category_count}

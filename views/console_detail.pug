@@ -1,0 +1,33 @@
+extends layout
+
+block content
+  h1 Console: #{_console.name}
+
+  p #[strong Company: ]
+    a(href=_console.company.url) #{_console.company.name} 
+  p #[strong Summary:] #{_console.description}
+  p #[strong Category:] 
+    a(href=_console.category.url) #{_console.category.name}
+
+
+  div(style='margin-left:20px;margin-top:20px')
+    h2(style='font-size: 1.5rem;') Console Instances
+
+    each ci in console_instances
+      hr
+      if ci.condition=='New'
+        p.text-success #{ci.condition}
+      else 
+        p.text-danger #{ci.condition}
+      
+      p #[strong Id: ]
+        a(href=ci.url) #{ci._id}
+
+    else
+      p There are no consoles instances of this console.
+
+  hr
+  p
+    a(href=_console.url+'/delete') Delete Console
+  p
+    a(href=_console.url+'/update') Update Console
